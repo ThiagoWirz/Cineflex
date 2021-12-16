@@ -11,10 +11,12 @@ export default function App() {
   return (
     <BrowserRouter>
       <Header />
-      {/* <MainPage/> */}
-      {/* <MoviePage/> */}
-      {/* <SeatsPage/> */}
-      <SuccessPage />
+      <Routes>
+          <Route path="/" element={<MainPage/>}/>
+          <Route path="/filme/:id" element={<MoviePage/>}/>
+          <Route path="/sessao/:id" element={<MoviePage/>}/>
+          <Route path="/sucesso" element={<MoviePage/>}/>
+      </Routes>
     </BrowserRouter>
   );
 }
