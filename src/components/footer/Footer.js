@@ -1,11 +1,11 @@
 import "./footer.css";
-export default function Footer() {
+export default function Footer({title, img}) {
   return (
     <footer>
       <div className="movie">
-        <img src="" alt="" />
+        <img src={img} alt="" />
       </div>
-      <p>Enola Holmes</p>
+      <p>{title}</p>
     </footer>
   );
 }

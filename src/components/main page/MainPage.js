@@ -1,7 +1,7 @@
 import "./mainpage.css";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import Movie from "./Movie";
 
 export default function MainPage() {
 
@@ -26,7 +26,7 @@ useEffect(() => {
     <main>
       <h1>Selecione o filme</h1>
       <div className="movies-box">
-        {movies.map((movie) => <Link to={`filme/${movie.id}`}><div className="movie"><img src = {movie.posterURL} alt ={movie.title}/></div></Link>)}
+        {movies.map((movie) => <Movie  movie = {movie} key = {movie.id}/>)}
       </div>
     </main>
   );

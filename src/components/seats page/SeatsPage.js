@@ -2,13 +2,16 @@ import "./seatspage.css";
 import Footer from "../footer/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 export default function SeatsPage() {
   const [seats, setSeats] = useState([]);
 
+  const {sessionID} = useParams()
+
   useEffect(() => {
     const promise = axios.get(
-      `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/1/seats`
+      `https://mock-api.driven.com.br/api/v4/cineflex/showtimes/${sessionID}/seats`
     );
 
     promise.then((response) => {

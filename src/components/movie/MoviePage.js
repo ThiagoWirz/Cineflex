@@ -1,27 +1,40 @@
 import "./moviepage.css";
 import Footer from "../footer/Footer";
+import Session from "./Session";
+import { useState, useEffect } from "react";
+import {useParams} from "react-router-dom"
+import axios from "axios";
 
 export default function MoviePage() {
-  return (
+  const {movieID} = useParams()
+  
+  const [sessions, setSessions] = useState([])
+  const [movie, setMovie] = useState([])
+
+
+  useEffect(() => {
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/movies/${movieID}/showtimes`);
+    promise.then((response) => {
+      setMovie(response.data)
+      setSessions(response.data.days)
+    })
+  }, [])
+  
+  if(sessions === []){
+    return(
+      <div className="movie-page">
+      <h1>Carregando...</h1>
+      </div>
+    )
+  }
+
+    return (
     <div className="movie-page">
       <h1>Selecione o horário</h1>
       <div className="sessions-list">
-        <div className="sessions">
-          <p className="day">Quinta-feira - 24/06/2021</p>
-          <div className="button-box">
-            <button className="time">15:00</button>
-            <button className="time">19:00</button>
-          </div>
-        </div>
-        <div className="sessions">
-          <p className="day">Sexta-feira - 25/06/2021</p>
-          <div className="button-box">
-            <button className="time">15:00</button>
-            <button className="time">19:00</button>
-          </div>
-        </div>
+        {sessions.map(session => <Session session = {session} key = {session.id} />)}
       </div>
-      <Footer />
+      <Footer title = {movie.title} img = {movie.posterURL} key = {movie.id} />
     </div>
   );
 }
