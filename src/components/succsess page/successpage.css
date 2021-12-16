@@ -1,0 +1,52 @@
+.success-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 67px;
+}
+
+.success-page h1 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+  color: #247a6b;
+  margin: 30px 0;
+}
+
+.success-page .infos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin-left: 28px;
+}
+
+.success-page .infos h2 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+  color: #293845;
+}
+
+.success-page .infos p {
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 0.04em;
+  color: #293845;
+}
+
+.success-page button {
+  width: 225px;
+  height: 42px;
+  border: none;
+  color: #ffffff;
+  background-color: #e8833a;
+  border-radius: 3px;
+  margin-top: 70px;
+}

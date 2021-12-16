@@ -1,0 +1,119 @@
+.seats-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 67px 0;
+}
+
+.seats-page h1 {
+  letter-spacing: 0.04em;
+  font-size: 24px;
+  line-height: 28px;
+  color: #293845;
+  margin: 55px 0;
+}
+.seats-page .seats {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 7px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 24px;
+}
+
+.seats-page button.available {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #808f9d;
+  background-color: #c3cfd9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seats-page button.occupied {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #f7c52b;
+  background-color: #fbe192;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seats-page button.selected {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #45bdb0;
+  background-color: #8dd7cf;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seats-page .seats-example {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+}
+.seats-page .seats-example div {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: -0.013em;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.seats-page .input-box {
+  width: 100%;
+  margin: 45px 0 54px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.seats-page .input-box h3 {
+  font-size: 18px;
+  line-height: 21px;
+  color: #293845;
+}
+
+.seats-page .input-box input {
+  outline: none;
+  width: 80%;
+  height: 51px;
+  background-color: #ffffff;
+  border: 1px solid #d5d5d5;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 0 18px;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.seats-page .input-box input::placeholder {
+  font-style: italic;
+  font-size: 18px;
+  line-height: 21px;
+  color: #afafaf;
+}
+
+.seats-page button {
+  width: 225px;
+  height: 42px;
+  border: none;
+  color: #ffffff;
+  background-color: #e8833a;
+  border-radius: 3px;
+}

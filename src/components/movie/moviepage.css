@@ -1,0 +1,50 @@
+.movie-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 67px 0;
+}
+
+.movie-page h1 {
+  letter-spacing: 0.04em;
+  font-size: 24px;
+  line-height: 28px;
+  color: #293845;
+  margin: 55px 0;
+}
+
+.movie-page .sessions-list {
+  height: 100%;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.movie-page .sessions-list p {
+  letter-spacing: 0.02em;
+  font-size: 20px;
+  line-height: 23px;
+  color: #293845;
+}
+
+.movie-page .sessions-list .sessions .button-box {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.movie-page .sessions-list button {
+  width: 83px;
+  height: 43px;
+  margin: 23px 0;
+  background-color: #e8833a;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.02em;
+}
