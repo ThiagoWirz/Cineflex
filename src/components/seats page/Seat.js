@@ -1,10 +1,12 @@
-export default function Seat({seat, setSelectedSeatsID, selectedSeatsID}){  
+export default function Seat({seat, setSelectedSeatsID, selectedSeatsID, selectedSeatsNames, setSelectedSeatsNames}){  
 
     function selectSeat(){
         if(!selectedSeatsID.includes(seat.id)){
         setSelectedSeatsID([...selectedSeatsID, seat.id])
+        setSelectedSeatsNames([...selectedSeatsNames, seat.name])
       }else{
         setSelectedSeatsID(selectedSeatsID.filter(id => id !== seat.id ) )
+        setSelectedSeatsNames(selectedSeatsNames.filter(name => name !== seat.name ) )
       }
       }
 

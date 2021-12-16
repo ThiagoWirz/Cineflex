@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import {useParams} from "react-router-dom"
 import axios from "axios";
 
-export default function MoviePage() {
+export default function MoviePage({setSessionDate, setSessionTime}) {
   const {movieID} = useParams()
   const [sessions, setSessions] = useState([])
 
@@ -29,7 +29,7 @@ export default function MoviePage() {
     <div className="movie-page">
       <h1>Selecione o horário</h1>
       <div className="sessions-list">
-        {sessions.days.map(session => <Session session = {session} key = {session.id} />)}
+        {sessions.days.map(session => <Session setSessionDate = {setSessionDate} setSessionTime = {setSessionTime} session = {session} key = {session.id} />)}
       </div>
       <Footer title = {sessions.title} img = {sessions.posterURL} key = {sessions.id} />
     </div>

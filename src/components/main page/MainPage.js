@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Movie from "./Movie";
 
-export default function MainPage() {
+export default function MainPage({setMovieName}) {
 
 const [movies, setMovies] = useState([]);
 
@@ -26,7 +26,7 @@ useEffect(() => {
     <main>
       <h1>Selecione o filme</h1>
       <div className="movies-box">
-        {movies.map((movie) => <Movie  movie = {movie} key = {movie.id}/>)}
+        {movies.map((movie) => <Movie  movie = {movie} key = {movie.id} setMovieName = {setMovieName}/>)}
       </div>
     </main>
   );

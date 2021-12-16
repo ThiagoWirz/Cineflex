@@ -1,5 +1,5 @@
 import "./successpage.css";
-export default function SuccessPage() {
+export default function SuccessPage({movieName, sessionDate, sessionTime, finalSeats, buyerName, buyerCPF}) {
   return (
     <div className="success-page">
       <h1>
@@ -10,18 +10,19 @@ export default function SuccessPage() {
       <div className="infos">
         <div className="session-info">
           <h2>Filme e sessão</h2>
-          <p>Enola Holmes</p>
-          <p>24/06/2021 15:00</p>
+          <p>{movieName}</p>
+          <p>{`${sessionDate} ${sessionTime}`}</p>
         </div>
         <div className="ticket-info">
           <h2>Ingressos</h2>
-          <p>Assento 15</p>
-          <p>Assento 16</p>
+          {finalSeats.map((seat) => <p>Assento {seat}</p>)}
+          {/* <p>Assento 15</p>
+          <p>Assento 16</p> */}
         </div>
         <div className="buyer-info">
           <h2>Comprador</h2>
-          <p>Nome: João da Silva Sauro</p>
-          <p>CPF: 123.456.789-10</p>
+          <p>Nome: {buyerName}</p>
+          <p>CPF: {buyerCPF}</p>
         </div>
       </div>
       <button>Voltar para Home</button>

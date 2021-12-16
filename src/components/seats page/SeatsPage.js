@@ -5,11 +5,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-export default function SeatsPage() {
+export default function SeatsPage({setFinalSeats ,setBuyerName, setBuyerCPF, buyerName, buyerCPF}) {
   const [seats, setSeats] = useState([]);
   const [selectedSeatsID, setSelectedSeatsID] = useState([])
-  const [buyerName, setBuyerName] = useState("")
-  const [buyerCPF, setBuyerCPF] = useState("")
+  const [selectedSeatsNames, setSelectedSeatsNames] = useState([])
   const {sessionID} = useParams()
   let navigate = useNavigate()
 
@@ -37,7 +36,7 @@ export default function SeatsPage() {
     <div className="seats-page">
       <h1>Selecione o(s) assento(s)</h1>
       <div className="seats">
-        {seats.seats.map((seat) => <Seat seat = {seat} setSelectedSeatsID = {setSelectedSeatsID} selectedSeatsID = {selectedSeatsID} key = {seat.id}/> )}
+        {seats.seats.map((seat) => <Seat seat = {seat} setSelectedSeatsID = {setSelectedSeatsID} selectedSeatsID = {selectedSeatsID} setSelectedSeatsNames = {setSelectedSeatsNames} selectedSeatsNames = {selectedSeatsNames} key = {seat.id}/> )}
           
       </div>
       <div className="seats-example">
@@ -55,29 +54,33 @@ export default function SeatsPage() {
       <div className="input-box">
         <div className="buyer-name">
           <h3>Nome do comprador:</h3>
-          <input onChange={(event) => setBuyerName(event.target.input)} type="text" placeholder="Digite seu nome..."></input>
+          <input onChange={(event) => setBuyerName(event.target.value)} type="text" placeholder="Digite seu nome..."></input>
         </div>
         <div className="buyer-cpf">
           <h3>CPF do comprador:</h3>
-          <input onChange={(event) => setBuyerCPF(event.target.input)} type="number" placeholder="Digite seu CPF..."></input>
+          <input onChange={(event) => setBuyerCPF(event.target.value)} type="number" placeholder="Digite seu CPF..."></input>
         </div>
       </div>
 
-      <button onClick={() => confirmSeats(selectedSeatsID, buyerName, buyerCPF, navigate)}>Reservar Assento(s)</button>
+      <button onClick={() => confirmSeats(selectedSeatsID,selectedSeatsNames, buyerName, buyerCPF, navigate, setBuyerName, setBuyerCPF, setFinalSeats)}>Reservar Assento(s)</button>
       <Footer title = {seats.movie.title} img = {seats.movie.posterURL} key = {seats.movie.id} />
     </div>
   );
 
 
 
-  function confirmSeats(ids, name, cpf, navigate){
-    if(name === "" || cpf === ""){
+  function confirmSeats(ids, selectedSeatsNames, buyerName, buyerCPF, navigate, setBuyerName, setBuyerCPF, setFinalSeats){
+    if(buyerName === "" || buyerCPF === ""){
       alert("As informações do comprador não podem estar vazias")
       return
     }
-
-    const promise = axios.post("https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many", {ids, name, cpf})
-    promise.then(() => navigate("/sucesso"))
+    
+    const promise = axios.post("https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many", {ids, buyerName, buyerCPF})
+    promise.then(() => {
+      setFinalSeats(selectedSeatsNames)
+      setBuyerName(buyerName)
+      setBuyerCPF(buyerCPF)
+      navigate("/sucesso")})
 
   }
 }
