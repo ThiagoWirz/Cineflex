@@ -14,11 +14,11 @@ useEffect(() => {
   })
 },[])
 
-  if(movies === []){
+  if(movies.length === 0){
     return(
-      <div className="movies-box">
+      <main>
       <h1>Carregando...</h1>
-      </div>
+      </main>
     )
   }
 

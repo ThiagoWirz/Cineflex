@@ -117,3 +117,9 @@
   background-color: #e8833a;
   border-radius: 3px;
 }
+
+.home-page input::-webkit-outer-spin-button,
+.home-page input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

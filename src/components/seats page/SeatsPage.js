@@ -1,13 +1,19 @@
 import "./seatspage.css";
 import Footer from "../footer/Footer";
+import Seat from "./Seat";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function SeatsPage() {
   const [seats, setSeats] = useState([]);
-
+  const [selectedSeatsID, setSelectedSeatsID] = useState([])
+  const [buyerName, setBuyerName] = useState("")
+  const [buyerCPF, setBuyerCPF] = useState("")
   const {sessionID} = useParams()
+  let navigate = useNavigate()
+
+ 
 
   useEffect(() => {
     const promise = axios.get(
@@ -15,26 +21,24 @@ export default function SeatsPage() {
     );
 
     promise.then((response) => {
-      setSeats(response.data.seats);
+      setSeats(response.data);
     });
   }, []);
 
-  if (seats === []) {
+  if(seats.length === 0) {
     return (
       <div className="seats-page">
         <span>Carregando...</span>
       </div>
     );
   }
+
   return (
     <div className="seats-page">
       <h1>Selecione o(s) assento(s)</h1>
       <div className="seats">
-        {seats.map(({ name, isAvailable }) => (
-          <button className={isAvailable === true ? "available" : "occupied"}>
-            <span>{name}</span>
-          </button>
-        ))}
+        {seats.seats.map((seat) => <Seat seat = {seat} setSelectedSeatsID = {setSelectedSeatsID} selectedSeatsID = {selectedSeatsID} key = {seat.id}/> )}
+          
       </div>
       <div className="seats-example">
         <div>
@@ -51,16 +55,29 @@ export default function SeatsPage() {
       <div className="input-box">
         <div className="buyer-name">
           <h3>Nome do comprador:</h3>
-          <input type="text" placeholder="Digite seu nome..."></input>
+          <input onChange={(event) => setBuyerName(event.target.input)} type="text" placeholder="Digite seu nome..."></input>
         </div>
         <div className="buyer-cpf">
           <h3>CPF do comprador:</h3>
-          <input type="text" placeholder="Digite seu CPF..."></input>
+          <input onChange={(event) => setBuyerCPF(event.target.input)} type="number" placeholder="Digite seu CPF..."></input>
         </div>
       </div>
 
-      <button>Reservar Assento(s)</button>
-      <Footer />
+      <button onClick={() => confirmSeats(selectedSeatsID, buyerName, buyerCPF, navigate)}>Reservar Assento(s)</button>
+      <Footer title = {seats.movie.title} img = {seats.movie.posterURL} key = {seats.movie.id} />
     </div>
   );
+
+
+
+  function confirmSeats(ids, name, cpf, navigate){
+    if(name === "" || cpf === ""){
+      alert("As informações do comprador não podem estar vazias")
+      return
+    }
+
+    const promise = axios.post("https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many", {ids, name, cpf})
+    promise.then(() => navigate("/sucesso"))
+
+  }
 }

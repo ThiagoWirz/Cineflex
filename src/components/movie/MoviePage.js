@@ -7,20 +7,17 @@ import axios from "axios";
 
 export default function MoviePage() {
   const {movieID} = useParams()
-  
   const [sessions, setSessions] = useState([])
-  const [movie, setMovie] = useState([])
 
 
   useEffect(() => {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v4/cineflex/movies/${movieID}/showtimes`);
     promise.then((response) => {
-      setMovie(response.data)
-      setSessions(response.data.days)
+      setSessions(response.data)
     })
   }, [])
   
-  if(sessions === []){
+  if(sessions.length === 0){
     return(
       <div className="movie-page">
       <h1>Carregando...</h1>
@@ -32,9 +29,9 @@ export default function MoviePage() {
     <div className="movie-page">
       <h1>Selecione o horário</h1>
       <div className="sessions-list">
-        {sessions.map(session => <Session session = {session} key = {session.id} />)}
+        {sessions.days.map(session => <Session session = {session} key = {session.id} />)}
       </div>
-      <Footer title = {movie.title} img = {movie.posterURL} key = {movie.id} />
+      <Footer title = {sessions.title} img = {sessions.posterURL} key = {sessions.id} />
     </div>
   );
 }
