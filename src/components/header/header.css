@@ -15,3 +15,17 @@ header h1 {
   font-size: 34px;
   line-height: 40px;
 }
+
+header button{
+  width: 70px;
+  height: 34px;
+  background-color: #e8833a;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.02em;
+  position: absolute;
+  left: 25px;
+}

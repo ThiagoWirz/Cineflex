@@ -70,17 +70,61 @@ export default function SeatsPage({setFinalSeats ,setBuyerName, setBuyerCPF, buy
 
 
   function confirmSeats(ids, selectedSeatsNames, buyerName, buyerCPF, navigate, setBuyerName, setBuyerCPF, setFinalSeats){
-    if(buyerName === "" || buyerCPF === ""){
+    if(ids.length=== 0){
+      alert("Nenhum assento selecionado")
+        return
+    }
+
+    if(buyerName === ""){
       alert("As informações do comprador não podem estar vazias")
       return
     }
+    if(!CPFValidation(buyerCPF)){
+      alert("CPF inválido")
+      return
+    }
+
     
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many", {ids, buyerName, buyerCPF})
     promise.then(() => {
       setFinalSeats(selectedSeatsNames)
       setBuyerName(buyerName)
-      setBuyerCPF(buyerCPF)
+      setBuyerCPF(buyerCPF.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4"))
       navigate("/sucesso")})
 
+  }
+
+
+  function CPFValidation(cpf) {
+    let sum = 0
+    let remnant = 0
+   if(cpf === '' || cpf.length !== 11 || cpf === "11111111111" || cpf === "22222222222" || cpf === "33333333333" ||
+    cpf === "44444444444" || cpf === "55555555555" || cpf === "66666666666" || cpf === "77777777777" ||
+     cpf === "88888888888" || cpf === "99999999999" || cpf === "00000000000"){
+    return false;	
+   }
+    for(let i = 0; i < 9; i++){
+      sum += parseInt(cpf[i]) * (10 - i)
+    }
+    remnant = (sum*10)%11
+    if(remnant === 10){
+      remnant = 0
+    }
+    if(remnant !== parseInt(cpf[9])){
+      return false
+    }
+    sum = 0
+    remnant = 0
+    for(let i = 0; i < 10; i++){
+      sum += parseInt(cpf[i]) * (11 - i)
+    }
+    remnant = (sum*10)%11
+    if(remnant === 10){
+      remnant = 0
+    }
+    if(remnant !== parseInt(cpf[10])){
+      return false
+    }
+    return true;
   }
 }

@@ -1,5 +1,13 @@
 import "./successpage.css";
-export default function SuccessPage({movieName, sessionDate, sessionTime, finalSeats, buyerName, buyerCPF}) {
+import { Link } from "react-router-dom";
+export default function SuccessPage({
+  movieName,
+  sessionDate,
+  sessionTime,
+  finalSeats,
+  buyerName,
+  buyerCPF,
+}) {
   return (
     <div className="success-page">
       <h1>
@@ -15,9 +23,9 @@ export default function SuccessPage({movieName, sessionDate, sessionTime, finalS
         </div>
         <div className="ticket-info">
           <h2>Ingressos</h2>
-          {finalSeats.map((seat) => <p>Assento {seat}</p>)}
-          {/* <p>Assento 15</p>
-          <p>Assento 16</p> */}
+          {finalSeats.map((seat, index) => (
+            <p key = {index}>Assento {seat}</p>
+          ))}
         </div>
         <div className="buyer-info">
           <h2>Comprador</h2>
@@ -25,7 +33,9 @@ export default function SuccessPage({movieName, sessionDate, sessionTime, finalS
           <p>CPF: {buyerCPF}</p>
         </div>
       </div>
-      <button>Voltar para Home</button>
+      <Link to="/">
+        <button>Voltar para Home</button>
+      </Link>
     </div>
   );
 }
