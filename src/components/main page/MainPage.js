@@ -2,6 +2,7 @@ import "./mainpage.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Movie from "./Movie";
+import Loading from "../../assets/loading.svg"
 
 export default function MainPage({setMovieName}) {
 
@@ -17,7 +18,7 @@ useEffect(() => {
   if(movies.length === 0){
     return(
       <main>
-      <h1>Carregando...</h1>
+      <img src = {Loading} alt = "Carregando"/>
       </main>
     )
   }

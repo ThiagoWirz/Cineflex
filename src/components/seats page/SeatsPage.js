@@ -4,12 +4,15 @@ import Seat from "./Seat";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import Input from "./Input";
+import Loading from "../../assets/loading.svg"
 
 export default function SeatsPage({setFinalSeats ,setBuyerName, setBuyerCPF, buyerName, buyerCPF}) {
   const [seats, setSeats] = useState([]);
   const [selectedSeatsID, setSelectedSeatsID] = useState([])
   const [selectedSeatsNames, setSelectedSeatsNames] = useState([])
   const {sessionID} = useParams()
+  const [buyers, setBuyers] = useState([])
   let navigate = useNavigate()
 
  
@@ -27,16 +30,15 @@ export default function SeatsPage({setFinalSeats ,setBuyerName, setBuyerCPF, buy
   if(seats.length === 0) {
     return (
       <div className="seats-page">
-        <span>Carregando...</span>
+        <img src = {Loading} alt = "Carregando"/>
       </div>
     );
   }
-
   return (
     <div className="seats-page">
       <h1>Selecione o(s) assento(s)</h1>
       <div className="seats">
-        {seats.seats.map((seat) => <Seat seat = {seat} setSelectedSeatsID = {setSelectedSeatsID} selectedSeatsID = {selectedSeatsID} setSelectedSeatsNames = {setSelectedSeatsNames} selectedSeatsNames = {selectedSeatsNames} key = {seat.id}/> )}
+        {seats.seats.map((seat) => <Seat seat = {seat} setSelectedSeatsID = {setSelectedSeatsID} selectedSeatsID = {selectedSeatsID} setSelectedSeatsNames = {setSelectedSeatsNames} selectedSeatsNames = {selectedSeatsNames} buyers = {buyers} setBuyers = {setBuyers} key = {seat.id}/> )}
           
       </div>
       <div className="seats-example">
@@ -52,18 +54,19 @@ export default function SeatsPage({setFinalSeats ,setBuyerName, setBuyerCPF, buy
       </div>
 
       <div className="input-box">
-        <div className="buyer-name">
+        {selectedSeatsID.length !== 0 && selectedSeatsID.map((id) => <Input setBuyerName = {setBuyerName} setBuyerCPF = {setBuyerCPF}/>  )}
+           {/* <div className="buyer-name">
           <h3>Nome do comprador:</h3>
           <input onChange={(event) => setBuyerName(event.target.value)} type="text" placeholder="Digite seu nome..."></input>
         </div>
         <div className="buyer-cpf">
           <h3>CPF do comprador:</h3>
           <input onChange={(event) => setBuyerCPF(event.target.value)} type="number" placeholder="Digite seu CPF..."></input>
-        </div>
+        </div> */}
       </div>
 
       <button onClick={() => confirmSeats(selectedSeatsID,selectedSeatsNames, buyerName, buyerCPF, navigate, setBuyerName, setBuyerCPF, setFinalSeats)}>Reservar Assento(s)</button>
-      <Footer title = {seats.movie.title} img = {seats.movie.posterURL} key = {seats.movie.id} />
+      <Footer time = {seats.name} day = {seats.day.weekday} title = {seats.movie.title} img = {seats.movie.posterURL} key = {seats.movie.id} />
     </div>
   );
 

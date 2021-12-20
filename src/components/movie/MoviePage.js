@@ -1,6 +1,7 @@
 import "./moviepage.css";
 import Footer from "../footer/Footer";
 import Session from "./Session";
+import Loading from "../../assets/loading.svg"
 import { useState, useEffect } from "react";
 import {useParams} from "react-router-dom"
 import axios from "axios";
@@ -20,7 +21,7 @@ export default function MoviePage({setSessionDate, setSessionTime}) {
   if(sessions.length === 0){
     return(
       <div className="movie-page">
-      <h1>Carregando...</h1>
+      <img src = {Loading} alt = "Carregando"/>
       </div>
     )
   }
