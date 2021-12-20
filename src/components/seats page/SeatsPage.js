@@ -84,18 +84,7 @@ export default function SeatsPage({
 
       <button
         className="confirm-button"
-        onClick={() =>
-          confirmSeats(
-            selectedSeatsID,
-            selectedSeatsNames,
-            buyerName,
-            buyerCPF,
-            navigate,
-            setBuyerName,
-            setBuyerCPF,
-            setFinalSeats
-          )
-        }
+        onClick={() =>confirmSeats(selectedSeatsID)}
       >
         Reservar Assento(s)
       </button>
@@ -109,16 +98,7 @@ export default function SeatsPage({
     </div>
   );
 
-  function confirmSeats(
-    ids,
-    selectedSeatsNames,
-    buyerName,
-    buyerCPF,
-    navigate,
-    setBuyerName,
-    setBuyerCPF,
-    setFinalSeats
-  ) {
+  function confirmSeats(ids) {
     if (ids.length === 0) {
       alert("Nenhum assento selecionado");
       return;
