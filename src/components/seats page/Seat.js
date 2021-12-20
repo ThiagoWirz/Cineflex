@@ -4,14 +4,11 @@ export default function Seat({
   selectedSeatsID,
   selectedSeatsNames,
   setSelectedSeatsNames,
-  buyers,
-  setBuyers
 }) {
   function selectSeat() {
     if (!selectedSeatsID.includes(seat.id)) {
       setSelectedSeatsID([...selectedSeatsID, seat.id]);
       setSelectedSeatsNames([...selectedSeatsNames, seat.name]);
-      setBuyers([...buyers, {idAssento: seat.id , nome: "", cpf: ""}])
     } else {
       setSelectedSeatsID(selectedSeatsID.filter((id) => id !== seat.id));
       setSelectedSeatsNames(

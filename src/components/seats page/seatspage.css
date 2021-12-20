@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 67px 0 117px 0 ;
+  padding: 67px 0 117px 0;
 }
 
 .seats-page h1 {
@@ -107,13 +107,14 @@
   color: #afafaf;
 }
 
-.seats-page button {
+.seats-page .confirm-button {
   width: 225px;
   height: 42px;
   border: none;
   color: #ffffff;
   background-color: #e8833a;
   border-radius: 3px;
+  margin-bottom: 20px;
 }
 
 .seats-page input::-webkit-outer-spin-button,

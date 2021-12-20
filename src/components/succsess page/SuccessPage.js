@@ -24,7 +24,7 @@ export default function SuccessPage({
         <div className="ticket-info">
           <h2>Ingressos</h2>
           {finalSeats.map((seat, index) => (
-            <p key = {index}>Assento {seat}</p>
+            <p key={index}>Assento {seat}</p>
           ))}
         </div>
         <div className="buyer-info">
