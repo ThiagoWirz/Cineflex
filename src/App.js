@@ -1,7 +1,7 @@
 import "./assets/css/reset.css";
 import "./assets/css/style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import Header from "./components/header/Header";
 import MainPage from "./components/main page/MainPage";
 import MoviePage from "./components/movie/MoviePage";
